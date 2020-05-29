@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import TextField from "@material-ui/core/TextField";
+import { Button } from "@material-ui/core";
 
 function App() {
+  const [items, setItem] = useState("");
+
   return (
     <div className="App">
       <header className="App-header">
@@ -14,7 +17,12 @@ function App() {
             id="outlined-basic"
             label="Enter Todo Item"
             variant="outlined"
+            value={items}
+            onChange={(e) => setItem(e.target.value)}
           />
+          <Button variant="contained" color="secondary">
+            Add to List
+          </Button>
         </form>
         <a
           className="App-link"
