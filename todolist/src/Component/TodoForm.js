@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import { Button } from "@material-ui/core";
-import uuid from "uuid";
+import { v4 as uuid } from "uuid";
 
 function TodoForm({ add2Form }) {
   const [item, setItem] = useState({ name: "", task: "", completed: false });
@@ -25,10 +25,10 @@ function TodoForm({ add2Form }) {
         label="Enter Todo Item"
         variant="outlined"
         value={item.task}
-        onChange={(event) => setItem(...item, event.target.value)}
+        onChange={(event) => setItem({ ...item, task: event.target.value })}
       />
 
-      <Button variant="contained" color="secondary" onClick={() => add2List}>
+      <Button variant="contained" color="secondary" tye="submit">
         Add to List
       </Button>
     </form>
