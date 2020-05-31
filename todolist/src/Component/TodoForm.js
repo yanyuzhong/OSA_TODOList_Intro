@@ -30,7 +30,7 @@ function TodoForm({ add2Form }) {
         onChange={(event) => setItem({ ...item, task: event.target.value })}
       />
 
-      <Button variant="contained" color="secondary" onSubmit={add2List}>
+      <Button color="secondary" onSubmit={add2List} onClick={add2List}>
         Add to List
       </Button>
     </form>
