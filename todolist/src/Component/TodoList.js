@@ -1,13 +1,14 @@
 import React from "react";
 import Task from "./Task";
+import { List } from "@material-ui/core";
 
 function TodoList({ items }) {
   return (
-    <ul>
-      {items.map((task) => (
-        <Task key={task.id} task={task}></Task>
+    <List>
+      {items.map((item) => (
+        <Task key={item.name} item={item} />
       ))}
-    </ul>
+    </List>
   );
 }
 

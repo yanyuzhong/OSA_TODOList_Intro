@@ -1,14 +1,24 @@
-import React, { useState } from "react";
-import logo from "./logo.svg";
+import React, { useEffect, useState } from "react";
 import "./App.css";
-// import TextField from "@material-ui/core/TextField";
-// import { Button } from "@material-ui/core";
 import TodoForm from "./Component/TodoForm";
 import TodoList from "./Component/TodoList";
 
+const LOCAL_STORAGE_KEY = "current_item";
+
 function App() {
   const [items, setItem] = useState([]);
-  console.log(items);
+
+  useEffect(() => {
+    const storage = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
+    if (storage) {
+      setItem(storage);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(items));
+  }, [items]);
+  console.log("In App", items);
 
   function add2Form(item) {
     setItem([item, ...items]);
@@ -16,28 +26,11 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
+      <header>
         <div>TODO List</div>
-        <img src={logo} className="App-logo" alt="logo" />
-        <TodoForm add2Form={add2Form}></TodoForm>
-        <TodoList items={items}></TodoList>
-        {/* <form className={App.root} noValidate autoComplete="off">
-          <TextField
-            id="outlined-basic"
-            label="Enter Todo Item"
-            variant="outlined"
-            onChange={(event) => setCurrVal(event.target.value)}
-          />
-
-          <Button
-            variant="contained"
-            color="secondary"
-            onClick={() => setItem([...items, currVal])}
-          >
-            Add to List
-          </Button>
-        </form> */}
       </header>
+      <TodoForm add2Form={add2Form} />
+      <TodoList items={items}></TodoList>
     </div>
   );
 }

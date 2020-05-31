@@ -1,16 +1,17 @@
 import React from "react";
 
 function Task({ item }) {
+  console.log(item.name);
   return (
     <div style={{ display: "flex" }}>
       <input type="checkbox"></input>
       <li
         style={{
-          color: "white",
+          color: "black",
           textDecoration: item.completed ? "line-through" : null,
         }}
       >
-        item.task
+        {item.task}
       </li>
       <button>X</button>
     </div>
