@@ -1,10 +1,17 @@
 import React from "react";
 
-function Task({ item }) {
-  console.log(item.name);
+function Task({ item, toggleComplete }) {
+  function handleComplete() {
+    console.log("inside togglecomplete!");
+    toggleComplete(item.name);
+    console.log("curr item completed: ", item.completed);
+  }
+  console.log(item);
+  console.log(item.completed);
+
   return (
     <div style={{ display: "flex" }}>
-      <input type="checkbox"></input>
+      <input type="checkbox" onClick={handleComplete}></input>
       <li
         style={{
           color: "black",

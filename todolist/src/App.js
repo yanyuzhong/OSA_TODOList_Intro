@@ -24,13 +24,24 @@ function App() {
     setItem([item, ...items]);
   }
 
+  function toggleComplete(itemName) {
+    items.map((item) => {
+      if (item.name === itemName) {
+        console.log("item: ", item.task);
+        console.log("app toggle complete's completed: ", item.completed);
+        return { ...item, completed: !item.completed };
+      }
+      return item;
+    });
+  }
+
   return (
     <div className="App">
       <header>
         <div>TODO List</div>
       </header>
       <TodoForm add2Form={add2Form} />
-      <TodoList items={items}></TodoList>
+      <TodoList items={items} toggleComplete={toggleComplete}></TodoList>
     </div>
   );
 }

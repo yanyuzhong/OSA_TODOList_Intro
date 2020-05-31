@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import { Button } from "@material-ui/core";
-import { v4 as uuid } from "uuid";
+// import uuid from "react-uuid";
+
+var key = 0;
 
 function TodoForm({ add2Form }) {
   const [item, setItem] = useState({ name: "", task: "", completed: false });
-  console.log(item);
 
   // function updateTodoForm(event) {
   //   setItem({ ...item, task: event.target.value });
@@ -15,7 +16,7 @@ function TodoForm({ add2Form }) {
     event.preventDefault();
     // only add to the todo list when the task string is not empy
     if (item.task.trim()) {
-      add2Form({ ...item, name: uuid });
+      add2Form({ ...item, name: (key += 1) });
       setItem({ ...item, task: "" });
     }
   }
