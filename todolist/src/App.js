@@ -8,31 +8,33 @@ const LOCAL_STORAGE_KEY = "current_item";
 function App() {
   const [items, setItem] = useState([]);
 
-  useEffect(() => {
-    const storage = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
-    if (storage) {
-      setItem(storage);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const storage = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
+  //   if (storage) {
+  //     setItem(storage);
+  //   }
+  // }, []);
 
-  useEffect(() => {
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(items));
-  }, [items]);
-  console.log("In App", items);
+  // useEffect(() => {
+  //   localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(items));
+  // }, [items]);
+  // console.log("In App", items);
 
   function add2Form(item) {
     setItem([item, ...items]);
   }
 
   function toggleComplete(itemName) {
-    items.map((item) => {
-      if (item.name === itemName) {
-        console.log("item: ", item.task);
-        console.log("app toggle complete's completed: ", item.completed);
-        return { ...item, completed: !item.completed };
-      }
-      return item;
-    });
+    setItem(
+      items.map((item) => {
+        if (item.name === itemName) {
+          console.log("item: ", item.task);
+          console.log("app toggle complete's completed: ", !item.completed);
+          return { ...item, completed: !item.completed };
+        }
+        return item;
+      })
+    );
   }
 
   return (
